@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SatanaCIub Project | Matrix Infected</title>
+    <title>SatanaCIub Project | Chaos Fix</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Comfortaa:wght@700&family=Fira+Code:wght@400;700&display=swap');
         
@@ -15,12 +15,12 @@
         body { background: var(--bg); color: var(--main); font-family: var(--font); margin: 0; overflow: hidden; height: 100dvh; user-select: none; transition: 0.3s; touch-action: none; }
         #rain { position: fixed; inset: 0; pointer-events: none; z-index: 4000; }
         .falling-item { position: absolute; white-space: nowrap; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); font-size: 10px; will-change: transform; }
-        .debris { position: fixed; width: 4px; height: 4px; background: var(--main); pointer-events: none; z-index: 5000; }
+        .debris { position: fixed; background: var(--main); pointer-events: none; z-index: 5000; }
         
         .page { display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .active-page { display: flex; }
         .card { width: 95%; max-width: 650px; background: var(--card); border: var(--border) solid var(--main); padding: 20px; overflow-y: auto; max-height: 75vh; font-size: 9px; line-height: 1.6; border-radius: var(--radius); white-space: pre-line; }
-        .btn { width: 320px; padding: 16px; margin: 6px; background: var(--bg); border: var(--border) solid var(--main); color: var(--main); font-family: var(--font); font-size: 9px; cursor: pointer; border-radius: var(--radius); position: relative; transition: transform 0.1s; }
+        .btn { width: 320px; padding: 16px; margin: 6px; background: var(--bg); border: var(--border) solid var(--main); color: var(--main); font-family: var(--font); font-size: 9px; cursor: pointer; border-radius: var(--radius); position: relative; transition: transform 0.1s; will-change: transform; }
         
         .inf-word { display: inline-block; cursor: pointer; color: var(--text-color); }
         .stage-1 { color: #f00 !important; }
@@ -68,7 +68,7 @@
 Запрещены любые формы ксенофобии, расизма, гомофобии, сексизма, а также травля по религиозному или социальному признаку.
 Запрещена прямая или завуалированная агрессия в адрес участников или третьих лиц.
 ​3. Спам и рассылки
-​Наказание: Мут 120 минут. При рецидиве — Бан. 
+​Наказание: Мут 120 минут. При рециве — Бан. 
 ​4. Флуд и Лестница
 ​Флуд: Отправка более 4-х бессмысленных сообщений подряд.
 ​Лестница: Дробление одной мысли на 5 и более сообщений.
@@ -129,9 +129,9 @@ Vinal – Просил союз с нашим чатом, при получен�
         
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         const musicLinks = {
-            red: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3',
-            green: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',
-            pink: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+            red: 'https://cdn.pixabay.com/audio/2022/11/04/audio_346c738e4a.mp3', 
+            green: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Rolemusic/The_Black_Spindle/Rolemusic_-_04_-_The_White_Frame.mp3',
+            pink: 'https://cdn.pixabay.com/audio/2022/05/27/audio_180873747b.mp3',
             blue: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
         };
 
@@ -144,36 +144,58 @@ Vinal – Просил союз с нашим чатом, при получен�
             o.start(); o.stop(audioCtx.currentTime + 0.1);
         }
 
-        function createDebris(x, y, isGreen) {
-            let count = isGreen ? 15 : 8;
-            for(let i=0; i<count; i++) {
-                const d = { x, y, vx: (Math.random()-0.5) * (isGreen ? 25 : 15), vy: (Math.random()-0.5) * (isGreen ? 25 : 15), g: isGreen ? 0.2 : 0.5, life: 1 };
-                const el = document.createElement('div'); el.className = 'debris';
-                if(isGreen) { el.style.width = '3px'; el.style.height = '3px'; el.style.background = '#0f0'; el.style.boxShadow = '0 0 8px #0f0'; }
-                document.body.appendChild(el); d.el = el; debris.push(d);
+        // КРУТЫЕ ОТВАЛИВАЮЩИЕСЯ КУСКИ
+        function createDebris(x, y) {
+            for(let i=0; i<12; i++) {
+                const size = Math.random() * 8 + 4;
+                const d = { 
+                    x, y, 
+                    vx: (Math.random()-0.5) * 20, 
+                    vy: (Math.random()-0.5) * 20, 
+                    g: 0.6, 
+                    life: 1,
+                    r: Math.random() * 360
+                };
+                const el = document.createElement('div'); 
+                el.className = 'debris';
+                el.style.width = size + 'px';
+                el.style.height = size + 'px';
+                if(curTheme === 'green') {
+                    el.style.boxShadow = '0 0 5px #0f0';
+                }
+                document.body.appendChild(el); 
+                d.el = el; 
+                debris.push(d);
             }
         }
 
         function render() {
             let sm = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--speed-m'));
+            const now = Date.now();
+
             debris.forEach((d, i) => {
-                d.x += d.vx; d.y += d.vy; d.vy += d.g; d.life -= 0.02;
-                d.el.style.transform = `translate(${d.x}px, ${d.y}px)`; d.el.style.opacity = d.life;
+                d.x += d.vx; d.y += d.vy; d.vy += d.g; d.life -= 0.015;
+                d.el.style.transform = `translate(${d.x}px, ${d.y}px) rotate(${d.r}px)`; 
+                d.el.style.opacity = d.life;
                 if(d.life <= 0) { d.el.remove(); debris.splice(i, 1); }
             });
+
             rain.forEach(item => {
                 if(item.name === "@Blood_Househ") {
                     item.x += item.vx * sm; item.y += item.vy * sm;
                     if(item.x < 0 || item.x > window.innerWidth - 80) item.vx *= -1;
                     if(item.y < 0 || item.y > window.innerHeight - 20) item.vy *= -1;
-                    if(document.querySelector('.active-page').id === 'p-menu') {
+
+                    // КУЛДАУН УДАРА И ПРОВЕРКА КОЛЛИЗИЙ
+                    if(document.querySelector('.active-page').id === 'p-menu' && (!item.lastHit || now - item.lastHit > 2500)) {
                         document.querySelectorAll('.btn').forEach(btn => {
                             const r = btn.getBoundingClientRect();
                             if(item.x > r.left && item.x < r.right && item.y > r.top && item.y < r.bottom) {
-                                item.vx *= -1.05; item.vy *= -1.05;
-                                btn.style.transform = `translate(${(Math.random()-0.5)*20}px, ${(Math.random()-0.5)*20}px)`;
-                                createDebris(item.x, item.y, curTheme === 'green');
-                                setTimeout(() => btn.style.transform = '', 100);
+                                item.lastHit = now; // Включаем бессмертие на 2.5 сек
+                                btn.style.transform = `scale(0.9) translate(${(Math.random()-0.5)*40}px, ${(Math.random()-0.5)*40}px)`;
+                                createDebris(item.x, item.y);
+                                playClick(100);
+                                setTimeout(() => btn.style.transform = '', 150);
                             }
                         });
                     }
@@ -192,7 +214,7 @@ Vinal – Просил союз с нашим чатом, при получен�
         }
 
         function nav(id) {
-            playClick(curTheme === 'red' ? 200 : curTheme === 'green' ? 800 : 1000);
+            playClick(curTheme === 'red' ? 150 : curTheme === 'green' ? 800 : 1000);
             document.querySelectorAll('.page').forEach(p=>p.classList.remove('active-page'));
             document.getElementById(id).classList.add('active-page');
         }
@@ -237,12 +259,11 @@ Vinal – Просил союз с нашим чатом, при получен�
             [...VIP, ...USERS].forEach(n => {
                 const el = document.createElement('div'); el.className = 'falling-item'; el.innerText = n;
                 c.appendChild(el);
-                let vx = n === "@Blood_Househ" ? 8 : 0, vy = n === "@Blood_Househ" ? 8 : 0;
-                rain.push({ el, x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, vx, vy, speed: 2+Math.random()*3, name: n });
+                let vx = n === "@Blood_Househ" ? 9 : 0, vy = n === "@Blood_Househ" ? 9 : 0;
+                rain.push({ el, x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, vx, vy, speed: 2+Math.random()*3, name: n, lastHit: 0 });
             });
             render();
         };
     </script>
 </body>
 </html>
-
