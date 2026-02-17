@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SatanaCIub Project | Final Sync</title>
+    <title>SatanaCIub Project</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Comfortaa:wght@700&family=Fira+Code:wght@400;700&display=swap');
         
@@ -16,24 +16,25 @@
         #rain { position: fixed; inset: 0; pointer-events: none; z-index: 4000; }
         
         .falling-item { position: absolute; white-space: nowrap; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); font-size: 10px; will-change: transform; color: var(--main); }
-        /* Стиль для слов из трансляции */
-        .chat-word { color: #fff !important; font-size: 9px; opacity: 0.8; filter: drop-shadow(0 0 5px var(--main)); }
+        .chat-word { 
+            color: #fff !important; 
+            font-size: 11px; 
+            opacity: 0.9; 
+            filter: drop-shadow(0 0 5px var(--main));
+            background: rgba(0,0,0,0.4);
+            padding: 4px 8px;
+            transform: translateX(-50%); 
+            border-radius: 4px;
+        }
         
-        .debris { position: fixed; background: var(--main); pointer-events: none; z-index: 5000; }
         .page { display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .active-page { display: flex; }
-        .card { width: 95%; max-width: 650px; background: var(--card); border: var(--border) solid var(--main); padding: 20px; overflow-y: auto; max-height: 75vh; font-size: 9px; line-height: 1.6; border-radius: var(--radius); white-space: pre-line; }
-        .btn { width: 320px; padding: 16px; margin: 6px; background: var(--bg); border: var(--border) solid var(--main); color: var(--main); font-family: var(--font); font-size: 9px; cursor: pointer; border-radius: var(--radius); position: relative; transition: transform 0.1s; will-change: transform; }
+        .card { width: 95%; max-width: 700px; background: var(--card); border: var(--border) solid var(--main); padding: 20px; overflow-y: auto; max-height: 80vh; font-size: 9px; line-height: 1.6; border-radius: var(--radius); white-space: pre-line; }
+        .btn { width: 320px; padding: 16px; margin: 6px; background: var(--bg); border: var(--border) solid var(--main); color: var(--main); font-family: var(--font); font-size: 9px; cursor: pointer; border-radius: var(--radius); position: relative; transition: transform 0.1s; }
         
         .inf-word { display: inline-block; cursor: pointer; color: var(--text-color); }
-        .stage-1 { color: #f00 !important; }
         .infected { color: #f00 !important; transition: 1.5s; filter: blur(1px); }
-        
-        .swipe-zone { width: 320px; height: 50px; border: var(--border) solid var(--main); position: relative; overflow: hidden; margin-top: 10px; background: var(--bg); }
-        .swipe-btn { position: absolute; top:0; left:0; bottom:0; width: 60px; background: var(--main); color: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 2; cursor: pointer; font-weight: bold; }
-        
-        @keyframes shake { 0% { transform: translate(1px, 1px); } 50% { transform: translate(-2px, -1px); } 100% { transform: translate(0, 0); } }
-        .global-shaking { animation: shake 0.1s infinite; }
+        .shame-item { margin-bottom: 20px; border-bottom: 1px dashed var(--main); padding-bottom: 10px; }
     </style>
 </head>
 <body class="theme-red">
@@ -49,16 +50,12 @@
         <h1 style="font-size: 14px; margin-bottom: 20px;">SatanaCIub Project</h1>
         <button class="btn" onclick="nav('p-rules')">ПРАВИЛА AER</button>
         <button class="btn" onclick="nav('p-forms-menu')">АНКЕТЫ</button>
-        <button class="btn" onclick="nav('p-soon')">ОБНОВЛЕНИЯ</button>
+        <button class="btn" onclick="nav('p-shame')">ДОСКА ПОЗОРА</button>
         <div style="display:flex; flex-wrap:wrap; gap:5px; width:332px; justify-content: center;">
             <button class="btn" style="width:75px; font-size:6px;" onclick="setTheme('pink')">PINK</button>
             <button class="btn" style="width:75px; font-size:6px;" onclick="setTheme('green')">GRN</button>
             <button class="btn" style="width:75px; font-size:6px;" onclick="setTheme('red')">RED</button>
             <button class="btn" style="width:75px; font-size:6px;" onclick="setTheme('blue')">BLUE</button>
-        </div>
-        <div class="swipe-zone">
-            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:8px; color:var(--main); opacity:0.5;">СВАЙП: СТЕНА ПОЗОРА</div>
-            <div id="sw-btn" class="swipe-btn">>></div>
         </div>
     </div>
 
@@ -95,71 +92,65 @@
     </div>
 
     <div id="p-rules" class="page">
-        <div class="card infect-me">Данный AER является основном сводом правил чата. Незнание правил не освобождает от ответственности. Копирование структуры или содержания без разрешения автора @SatanaCIub запрещено
-​1. Дискриминация и деструктив
+        <div class="card infect-me">
+Данный AER является основном сводом правил чата. Незнание правил не освобождает от ответственности. Копирование структуры или содержания без разрешения автора @SatanaCIub запрещено
+
+1. Дискриминация и деструктив
 Запрещены любые формы ксенофобии, расизма, гомофобии, сексизма, а также травля по религиозному или социальному признаку.
 Запрещена прямая или завуалированная агрессия в адрес участников или третьих лиц.
-​Наказание: Мут от 20 до 45 минут.
-​3. Спам и рассылки
+Наказание: Мут от 20 до 45 минут.
+
+3. Спам и рассылки
 Запрещена массовая отправка однотипных сообщений, стикеров, медиафайлов или команд ботов.
-​Наказание: Мут 120 минут. При рецидиве — Бан. 
-​4. Флуд и Лестница
-​Флуд: Отправка более 4-х бессмысленных сообщений подряд.
-​Лестница: Дробление одной мысли на 5 и более сообщений.
-​Наказание: Мут от 30 минут до 3 часов мута
+Наказание: Мут 120 минут. При рецидиве — Бан. 
+
+4. Флуд и Лестница
+Флуд: Отправка более 4-х бессмысленных сообщений подряд.
+Лестница: Дробление одной мысли на 5 и более сообщений.
+Наказание: Мут от 30 минут до 3 часов мута
+
 Запрещено разжигание конфликтов, обсуждение политических событий, деятелей и войн. Любая попытка поднять острую социальную тему карается незамедлительно.
-​Наказание: За провокацию — 220 минут мута. За политику — бан навсегда
-​Наказание: Мут 12 часов или Бан (на усмотрение модератора).
+Наказание: За провокацию — 220 минут мута. За политику — бан навсегда
+Наказание: Мут 12 часов или Бан (на усмотрение модератора).
+
 🚫 Раздел II (баны) 
 1. Обход наказаний
 Использование вторых аккаунтов (твинков) для общения, пока основной аккаунт в муте/бане.
-​Наказание: Перманентный бан всех аккаунтов.
+Наказание: Перманентный бан всех аккаунтов.
+
 Распространение порнографии, эротики, шок-контента, сцен насилия или скримеров.
-​Наказание: Перманентный бан.
+Наказание: Перманентный бан.
+
 Доксинг (деанон), шантаж, угрозы в реальной жизни, сваттинг, распространение фишинговых ссылок или вирусов.
-​4. Выдача себя за другое лицо 
+
+4. Выдача себя за другое лицо 
 Копирование профиля (аватар, ник, био) администрации или известных участников с целью дезинформации.
-​Наказание: Перманентный бан.
-​Принцип прогрессии: Если пользователь продолжает нарушать после мута, длительность наказания увеличивается: +15%, +25%, +30% и т.д., вплоть до бана на 1800 дней.
-​Пересыл сообщений: Запрещено транслировать мысли забаненного пользователя через пересылку сообщений и если человек замучен. 
-​Префиксы: Выдаются строго доверенным лицам.
-​• Администрация не имеет право вынести наказание, не описанное в правилах, если действия юзера вредят атмосфере</div>
+Наказание: Перманентный бан.
+
+Принцип прогрессии: Если пользователь продолжает нарушать после мута, длительность наказания увеличивается: +15%, +25%, +30% и т.д., вплоть до бана на 1800 дней.
+Пересыл сообщений: Запрещено транслировать мысли забаненного пользователя через пересылку сообщений и если человек замучен. 
+Префиксы: Выдаются строго доверенным лицам.
+• Администрация не имеет право вынести наказание, не описанное в правилах, если действия юзера вредят атмосфере
+        </div>
         <button class="btn" onclick="nav('p-menu')">НАЗАД</button>
     </div>
 
     <div id="p-shame" class="page">
-        <div class="card">‼️Стена позора и фриков которые были или находятся в этом чате 
-
-Топ 5 фриков чата которые тупее чем иван сало:
-1. Место конечно же самый умный рейдер и шантажер 
-Vinal – Просил союз с нашим чатом, при получении отказа начал говорить что будет рейдить наши кланы. Записывал гс где оскробил Украину и выставил Россию лучшей, постоянно в гс говорил планы по рейдам наших клубов
-Итог: В чате. Остался без своего чата, постоянно его клубы сносили
-2. Место 18 Летний русофоб педофил играющий в нулс 
-Григей (Настоящее имя) – Ныл в 2-3 конфликтах, звал свою свиную стаю. Боится общаться с русскими людьми которым 10-15 лет. ( 7-9 лет это для него нормальный возраст для общения) 
-Итог: Создал чат где 3 онлайна и 80 ботов и в итоге удалил чат. В нашем чате.
-
-3. Самый худший админ в мире, даже 2 летний ребёнок меньше ноет чем он
-Релтин – Был админом группы 5 уровня, оскроблял обычных участников. Получил мут на 1 час и вышел с чата навсегда. Обиженный фрик который играет в нулс 24/7 
-Итог: Неизвестен. Забанен.
-
-4. Место Крутой доксер в чате, сливал информацию про участников просто так
-Дед – Сливал инфу про участников чата, успокоился после того как другие участники чата нашли его фото и страницу в вк его мамы. 
-Итог: Стал нормальным (вроде) , находится в нашем чате..
-
-5. Место агрессивный но тихий фрик.
-Психокид – Оскроблял всех участников в чате, разданивался несколько раз (жалели его) 
-Итог: Забанен в чате находится в чате нищий оппов
-</div>
-        <button class="btn" onclick="nav('p-menu')">В МЕНЮ</button>
+        <div class="card">
+            <h1 style="text-align:center; color:var(--main);">Топ 5 фриков чата</h1>
+            <div class="shame-item"><strong>1. Vinal</strong> – Рейдер и шантажер. Просил союз, получил отказ — начал угрожать. Оскорблял Украину, хвастался планами рейдов. Итог: В чате. Остался без чата.</div>
+            <div class="shame-item"><strong>2. Григей</strong> – 18 летний русофоб педофил. Боится ровесников, общается только с детьми 7-9 лет. Итог: Создал чат с ботами и удалил его.</div>
+            <div class="shame-item"><strong>3. Релтин</strong> – Худший админ. Оскорблял участников, ныл из-за мута на час. Обиженный фрик в нулсе 24/7. Итог: Забанен.</div>
+            <div class="shame-item"><strong>4. Дед</strong> – Доксер. Сливал инфу, пока не нашли фото его мамы в ВК. Итог: Стал нормальным (вроде), в чате.</div>
+            <div class="shame-item"><strong>5. Психокид</strong> – Агрессивный но тихий фрик. Оскорблял всех, даже после вторых шансов. Итог: Забанен навсегда.</div>
+        </div>
+        <button class="btn" onclick="nav('p-menu')">НАЗАД</button>
     </div>
 
     <script>
-        let curTheme = 'red';
+        let rain = [], lastSeenWord = "";
         const VIP = ["@SatanaCIub", "@hooligan_hooligan", "@Blood_Househ"];
         const USERS = ["@VetalGeor", "@geniusmozer", "@aungakw_"]; 
-        let rain = [], debris = [], lastSeenWord = "";
-        
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         const musicLinks = {
             red: 'https://cdn.pixabay.com/audio/2022/11/04/audio_346c738e4a.mp3', 
             green: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Rolemusic/The_Black_Spindle/Rolemusic_-_04_-_The_White_Frame.mp3',
@@ -167,7 +158,6 @@ Vinal – Просил союз с нашим чатом, при получен�
             blue: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
         };
 
-        // ТРАНСЛЯЦИЯ ИЗ FIREBASE
         async function syncWithHerokuBot() {
             const fbUrl = "https://satanaclub-f34c8-default-rtdb.firebaseio.com/stream.json";
             try {
@@ -186,46 +176,16 @@ Vinal – Просил союз с нашим чатом, при получен�
             el.className = 'falling-item chat-word';
             el.innerText = text;
             document.getElementById('rain').appendChild(el);
-            rain.push({ el, x: Math.random()*(window.innerWidth-100), y: -50, vx: 0, vy: 2+Math.random()*2, isChat: true });
+            rain.push({ el, x: window.innerWidth / 2, y: -50, vx: 0, vy: 2.5 + Math.random(), isChat: true });
         };
 
-        function createDebris(x, y) {
-            for(let i=0; i<12; i++) {
-                const d = { x, y, vx: (Math.random()-0.5)*18, vy: (Math.random()-0.5)*18, g: 0.6, life: 1, r: Math.random()*360 };
-                const el = document.createElement('div'); el.className = 'debris';
-                el.style.width = '6px'; el.style.height = '6px';
-                document.body.appendChild(el); d.el = el; debris.push(d);
-            }
-        }
-
         function render() {
-            let sm = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--speed-m'));
-            const now = Date.now();
-
-            debris.forEach((d, i) => {
-                d.x += d.vx; d.y += d.vy; d.vy += d.g; d.life -= 0.02;
-                d.el.style.transform = `translate(${d.x}px, ${d.y}px) rotate(${d.r}deg)`; d.el.style.opacity = d.life;
-                if(d.life <= 0) { d.el.remove(); debris.splice(i, 1); }
-            });
-
+            let sm = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--speed-m')) || 1;
             rain.forEach((item, i) => {
                 if(item.name === "@Blood_Househ") {
                     item.x += item.vx * sm; item.y += item.vy * sm;
                     if(item.x < 0 || item.x > window.innerWidth - 80) item.vx *= -1;
                     if(item.y < 0 || item.y > window.innerHeight - 20) item.vy *= -1;
-
-                    // ANTI-STUCK: 2.5 сек кулдаун после удара
-                    if(document.querySelector('.active-page').id === 'p-menu' && (!item.lastHit || now - item.lastHit > 2500)) {
-                        document.querySelectorAll('.btn').forEach(btn => {
-                            const r = btn.getBoundingClientRect();
-                            if(item.x > r.left && item.x < r.right && item.y > r.top && item.y < r.bottom) {
-                                item.lastHit = now;
-                                createDebris(item.x, item.y);
-                                btn.style.transform = 'scale(0.95)';
-                                setTimeout(() => btn.style.transform = '', 100);
-                            }
-                        });
-                    }
                 } else {
                     item.y += (item.vy || 3) * sm;
                     if(item.y > window.innerHeight) {
@@ -233,13 +193,13 @@ Vinal – Просил союз с нашим чатом, при получен�
                         item.y = -50; item.x = Math.random()*window.innerWidth;
                     }
                 }
-                item.el.style.transform = `translate3d(${item.x}px, ${item.y}px, 0)`;
+                item.el.style.transform = `translate3d(${item.x}px, ${item.y}px, 0) ${item.isChat ? 'translateX(-50%)' : ''}`;
             });
             requestAnimationFrame(render);
         }
 
         function setTheme(t) {
-            document.body.className = 'theme-' + t; curTheme = t;
+            document.body.className = 'theme-' + t;
             const m = document.getElementById('bg-music'); m.src = musicLinks[t]; m.play().catch(()=>{});
         }
 
@@ -249,15 +209,14 @@ Vinal – Просил союз с нашим чатом, при получен�
         }
 
         function checkAuth() {
-            if(document.getElementById('pass').value === '2727') {
-                audioCtx.resume(); setTheme('red'); nav('p-menu');
-            }
+            if(document.getElementById('pass').value === '2727') { setTheme('red'); nav('p-menu'); }
         }
 
         function initInfection() {
             document.querySelectorAll('.infect-me').forEach(card => {
                 const txt = card.innerText; card.innerHTML = '';
-                txt.split(/\s+/).forEach(w => {
+                txt.split(/\n| /).forEach(w => {
+                    if(!w) return;
                     const s = document.createElement('span'); s.className = 'inf-word'; s.innerText = w + ' ';
                     s.onclick = () => {
                         s.dataset.c = (parseInt(s.dataset.c) || 0) + 1;
@@ -268,22 +227,13 @@ Vinal – Просил союз с нашим чатом, при получен�
             });
         }
 
-        const sw = document.getElementById('sw-btn'); let sX=0;
-        sw.ontouchstart = e => sX = e.touches[0].clientX;
-        sw.ontouchmove = e => { 
-            let d = e.touches[0].clientX - sX; 
-            if(d > 0 && d < 260) sw.style.transform = `translateX(${d}px)`; 
-            if(d >= 240) { nav('p-shame'); sw.style.transform = 'translateX(0)'; }
-        };
-        sw.ontouchend = () => sw.style.transform = 'translateX(0)';
-
         window.onload = () => {
             initInfection();
             const rainCont = document.getElementById('rain');
             [...VIP, ...USERS].forEach(n => {
                 const el = document.createElement('div'); el.className = 'falling-item'; el.innerText = n;
                 rainCont.appendChild(el);
-                rain.push({ el, x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, vx: n==="@Blood_Househ"?7:0, vy: n==="@Blood_Househ"?7:0, name: n, lastHit: 0 });
+                rain.push({ el, x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, vx: n==="@Blood_Househ"?7:0, vy: n==="@Blood_Househ"?7:0, name: n });
             });
             render();
         };
