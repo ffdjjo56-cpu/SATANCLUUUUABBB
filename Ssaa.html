@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SatanaCIub Project</title>
+    </title>HOOLIGANNN AEERR </title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Comfortaa:wght@700&family=Fira+Code:wght@400;700&display=swap');
         
@@ -15,26 +15,29 @@
         body { background: var(--bg); color: var(--main); font-family: var(--font); margin: 0; overflow: hidden; height: 100dvh; user-select: none; transition: 0.3s; touch-action: none; }
         #rain { position: fixed; inset: 0; pointer-events: none; z-index: 4000; }
         
-        .falling-item { position: absolute; white-space: nowrap; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); font-size: 10px; will-change: transform; color: var(--main); }
-        .chat-word { 
-            color: #fff !important; 
-            font-size: 11px; 
-            opacity: 0.9; 
-            filter: drop-shadow(0 0 5px var(--main));
-            background: rgba(0,0,0,0.4);
-            padding: 4px 8px;
-            transform: translateX(-50%); 
-            border-radius: 4px;
-        }
-        
         .page { display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .active-page { display: flex; }
-        .card { width: 95%; max-width: 700px; background: var(--card); border: var(--border) solid var(--main); padding: 20px; overflow-y: auto; max-height: 80vh; font-size: 9px; line-height: 1.6; border-radius: var(--radius); white-space: pre-line; }
-        .btn { width: 320px; padding: 16px; margin: 6px; background: var(--bg); border: var(--border) solid var(--main); color: var(--main); font-family: var(--font); font-size: 9px; cursor: pointer; border-radius: var(--radius); position: relative; transition: transform 0.1s; }
+        .card { width: 95%; max-width: 700px; background: var(--card); border: var(--border) solid var(--main); padding: 20px; overflow-y: auto; max-height: 80vh; font-size: 9px; line-height: 1.6; border-radius: var(--radius); white-space: pre-line; position: relative; }
+        .btn { width: 320px; padding: 16px; margin: 6px; background: var(--bg); border: var(--border) solid var(--main); color: var(--main); font-family: var(--font); font-size: 9px; cursor: pointer; border-radius: var(--radius); transition: transform 0.1s; }
         
-        .inf-word { display: inline-block; cursor: pointer; color: var(--text-color); }
-        .infected { color: #f00 !important; transition: 1.5s; filter: blur(1px); }
-        .shame-item { margin-bottom: 20px; border-bottom: 1px dashed var(--main); padding-bottom: 10px; }
+        /* ВКЛАДКИ (TABS) */
+        .tabs-header { display: flex; width: 100%; border-bottom: var(--border) solid var(--main); margin-bottom: 15px; }
+        .tab-btn { flex: 1; padding: 12px; background: none; border: none; color: var(--main); font-family: var(--font); font-size: 8px; cursor: pointer; opacity: 0.4; }
+        .tab-btn.active { opacity: 1; border-bottom: 4px solid var(--main); }
+
+        .user-list { width: 100%; display: flex; flex-direction: column; gap: 8px; }
+        .user-item { padding: 12px; border: 1px solid var(--main); cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(255,0,0,0.05); }
+        .user-item:hover { background: var(--main); color: var(--bg); }
+        
+        /* ДЕТАЛИ ЮЗЕРА */
+        #user-detail { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 6000; display: none; width: 310px; box-shadow: 0 0 30px rgba(255,0,0,0.4); }
+        .copy-btn { font-size: 7px; background: var(--main); color: var(--bg); border: none; padding: 4px; margin-left: 8px; cursor: pointer; vertical-align: middle; }
+        
+        /* СИСТЕМНЫЕ УВЕДОМЛЕНИЯ */
+        .falling-item { position: absolute; white-space: nowrap; font-weight: bold; font-size: 10px; color: var(--main); text-shadow: 0 0 5px var(--main); }
+        .system-msg { color: #fff !important; border: 1px solid #fff; padding: 8px; background: rgba(0,0,0,0.7); transform: translateX(-50%); border-radius: 4px; }
+        
+        .shame-item { margin-bottom: 15px; border-bottom: 1px dashed var(--main); padding-bottom: 10px; }
     </style>
 </head>
 <body class="theme-red">
@@ -43,20 +46,37 @@
 
     <div id="p-login" class="page active-page">
         <input type="password" id="pass" placeholder="CODE: 2727" style="background:var(--bg); border:var(--border) solid var(--main); color:var(--main); font-family:var(--font); padding:15px; text-align:center; outline:none; width:220px;">
-        <button class="btn" style="margin-top:20px;" onclick="checkAuth()">ИНИЦИАЦИЯ</button>
+        <button class="btn" style="margin-top:20px;" onclick="checkAuth()">Войти</button>
     </div>
 
     <div id="p-menu" class="page">
-        <h1 style="font-size: 14px; margin-bottom: 20px;">SatanaCIub Project</h1>
-        <button class="btn" onclick="nav('p-rules')">ПРАВИЛА AER</button>
-        <button class="btn" onclick="nav('p-forms-menu')">АНКЕТЫ</button>
-        <button class="btn" onclick="nav('p-shame')">ДОСКА ПОЗОРА</button>
-        <div style="display:flex; flex-wrap:wrap; gap:5px; width:332px; justify-content: center;">
+        <h1 style="font-size: 12px; margin-bottom: 20px;"> HOOLIGANNN AERRR</h1>
+        <button class="btn" onclick="nav('p-rules')">Правилааааввваа AER</button>
+        <button class="btn" onclick="openMembersTab()">ДОККССС ИНФААВФ</button>
+        <button class="btn" onclick="nav('p-forms-menu')">АНКЕТТТЫЫЫ</button>
+        <button class="btn" onclick="nav('p-shame')">ДОСКАА ПОЗООРРА</button>
+        <div style="display:flex; flex-wrap:wrap; gap:5px; width:332px; justify-content: center; margin-top: 10px;">
             <button class="btn" style="width:75px; font-size:6px;" onclick="setTheme('pink')">PINK</button>
             <button class="btn" style="width:75px; font-size:6px;" onclick="setTheme('green')">GRN</button>
             <button class="btn" style="width:75px; font-size:6px;" onclick="setTheme('red')">RED</button>
             <button class="btn" style="width:75px; font-size:6px;" onclick="setTheme('blue')">BLUE</button>
         </div>
+    </div>
+
+    <div id="p-members" class="page">
+        <div class="card" style="height: 75vh;">
+            <div class="tabs-header">
+                <button id="t-users" class="tab-btn active" onclick="switchTab('users')">УЧАСТНИКИ</button>
+                <button id="t-admins" class="tab-btn" onclick="switchTab('admins')">АДМИНЫ</button>
+            </div>
+            <div id="list-container" class="user-list"></div>
+        </div>
+        <button class="btn" onclick="nav('p-menu')">НАЗАД</button>
+    </div>
+
+    <div id="user-detail" class="card">
+        <div id="user-info-content"></div>
+        <button class="btn" style="width:100%; margin-top:15px; padding:10px;" onclick="closeDetail()">ЗАКРЫТЬ</button>
     </div>
 
     <div id="p-forms-menu" class="page">
@@ -67,7 +87,7 @@
     </div>
 
     <div id="p-form-admin" class="page">
-        <div class="card infect-me">АНКЕТА НА АДМИНКУ:
+        <div class="card">АНКЕТТТА НА АДМММИНКУ:
 1. Твой ник, @, айди, возраст и активность в чате за неделю;
 2. Твой часовой пояс, сколько ты готов потратить часов работы в чате;
 3. Что ты будешь делать, если в чате нарушают, а ты не можешь выдать бан или мут?;
@@ -77,7 +97,7 @@
     </div>
 
     <div id="p-form-vice" class="page">
-        <div class="card infect-me">АНКЕТА НА ВИЦЕ:
+        <div class="card">АНКЕЕЕТТА НА ВИЦЦЦЕ:
 1. Количество трофеев от 30000 тыс. (30k)
 2. Сколько в день ты сможешь сидеть и работать в клубе?
 3. Скриншот аккаунта 
@@ -86,157 +106,158 @@
     </div>
 
     <div id="p-form-vet" class="page">
-        <div class="card infect-me">АНКЕТА НА ВЕТЕРАНА:
+        <div class="card">АНННКЕТА НА ВЕТЕРРРРАНА:
 1. Скинуть скриншот профиля.</div>
         <button class="btn" onclick="nav('p-forms-menu')">НАЗАД</button>
     </div>
 
     <div id="p-rules" class="page">
-        <div class="card infect-me">
-Данный AER является основном сводом правил чата. Незнание правил не освобождает от ответственности. Копирование структуры или содержания без разрешения автора @SatanaCIub запрещено
-
-1. Дискриминация и деструктив
+        <div class="card">
+            <h2 style="text-align: center; font-size: 10px;">AER RULES</h2>
+            Данный AER является основном сводом правил чата. Незнание правил не освобождает от ответственности. Копирование структуры или содержания без разрешения автора @SatanaCIub запрещено
+​1. Дискриминация и деструктив
 Запрещены любые формы ксенофобии, расизма, гомофобии, сексизма, а также травля по религиозному или социальному признаку.
 Запрещена прямая или завуалированная агрессия в адрес участников или третьих лиц.
-Наказание: Мут от 20 до 45 минут.
-
-3. Спам и рассылки
+​Наказание: Мут от 20 до 45 минут.
+​3. Спам и рассылки
 Запрещена массовая отправка однотипных сообщений, стикеров, медиафайлов или команд ботов.
-Наказание: Мут 120 минут. При рецидиве — Бан. 
-
-4. Флуд и Лестница
-Флуд: Отправка более 4-х бессмысленных сообщений подряд.
-Лестница: Дробление одной мысли на 5 и более сообщений.
-Наказание: Мут от 30 минут до 3 часов мута
-
+​Наказание: Мут 120 минут. При рецидиве — Бан. 
+​4. Флуд и Лестница
+​Флуд: Отправка более 4-х бессмысленных сообщений подряд.
+​Лестница: Дробление одной мысли на 5 и более сообщений.
+​Наказание: Мут от 30 минут до 3 часов мута
 Запрещено разжигание конфликтов, обсуждение политических событий, деятелей и войн. Любая попытка поднять острую социальную тему карается незамедлительно.
-Наказание: За провокацию — 220 минут мута. За политику — бан навсегда
-Наказание: Мут 12 часов или Бан (на усмотрение модератора).
+​Наказание: За провокацию — 220 минут мута. За политику — бан навсегда
+​Наказание: Мут 12 часов или Бан (на усмотрение модератора).
 
-🚫 Раздел II (баны) 
+ Раздел II (баны) 
 1. Обход наказаний
 Использование вторых аккаунтов (твинков) для общения, пока основной аккаунт в муте/бане.
-Наказание: Перманентный бан всех аккаунтов.
-
+​Наказание: Перманентный бан всех аккаунтов.
+​2. Контент 18+ (NSFW)
 Распространение порнографии, эротики, шок-контента, сцен насилия или скримеров.
-Наказание: Перманентный бан.
-
+​Наказание: Перманентный бан.
+​3. Опасное поведение и конф. информация
 Доксинг (деанон), шантаж, угрозы в реальной жизни, сваттинг, распространение фишинговых ссылок или вирусов.
-
-4. Выдача себя за другое лицо 
+​Наказание: Перманентный бан + глобальный бан 
+​4. Выдача себя за другое лицо 
 Копирование профиля (аватар, ник, био) администрации или известных участников с целью дезинформации.
-Наказание: Перманентный бан.
-
-Принцип прогрессии: Если пользователь продолжает нарушать после мута, длительность наказания увеличивается: +15%, +25%, +30% и т.д., вплоть до бана на 1800 дней.
-Пересыл сообщений: Запрещено транслировать мысли забаненного пользователя через пересылку сообщений и если человек замучен. 
-Префиксы: Выдаются строго доверенным лицам.
-• Администрация не имеет право вынести наказание, не описанное в правилах, если действия юзера вредят атмосфере
+​Наказание: Перманентный бан.
+​
+Раздел III: Информация для администрации
+​Принцип прогрессии: Если пользователь продолжает нарушать после мута, длительность наказания увеличивается: +15%, +25%, +30% и т.д., вплоть до бана на 1800 дней.
+​Пересыл сообщений: Запрещено транслировать мысли забаненного пользователя через пересылку сообщений и если человек замучен. 
+​Префиксы: Выдаются строго доверенным лицам.
+​• Администрация не имеет право вынести наказание, не описанное в правилах, если действия юзера вредят атмосфере
+          
         </div>
         <button class="btn" onclick="nav('p-menu')">НАЗАД</button>
     </div>
 
     <div id="p-shame" class="page">
         <div class="card">
-            <h1 style="text-align:center; color:var(--main);">Топ 5 фриков чата</h1>
-            <div class="shame-item"><strong>1. Vinal</strong> – Рейдер и шантажер. Просил союз, получил отказ — начал угрожать. Оскорблял Украину, хвастался планами рейдов. Итог: В чате. Остался без чата.</div>
-            <div class="shame-item"><strong>2. Григей</strong> – 18 летний русофоб педофил. Боится ровесников, общается только с детьми 7-9 лет. Итог: Создал чат с ботами и удалил его.</div>
-            <div class="shame-item"><strong>3. Релтин</strong> – Худший админ. Оскорблял участников, ныл из-за мута на час. Обиженный фрик в нулсе 24/7. Итог: Забанен.</div>
-            <div class="shame-item"><strong>4. Дед</strong> – Доксер. Сливал инфу, пока не нашли фото его мамы в ВК. Итог: Стал нормальным (вроде), в чате.</div>
-            <div class="shame-item"><strong>5. Психокид</strong> – Агрессивный но тихий фрик. Оскорблял всех, даже после вторых шансов. Итог: Забанен навсегда.</div>
+            <h1 style="text-align:center; color:var(--main); font-size:10px;">Топ 5 фриков чата</h1>
+            <div class="shame-item"><strong>1. Vinal</strong> – Просил союз с нашим чатом, при получении отказа начал говорить что будет рейдить наши кланы. Записывал гс где оскробил Украину и выставил Россию лучшей, постоянно в гс говорил планы по рейдам наших клубов</div>
+            <div class="shame-item"><strong>2. Григей</strong> – Ныл в 2-3 конфликтах, звал свою свиную стаю. Боится общаться с русскими людьми которым 10-15 лет. ( 7-9 лет это для него нормальный возраст для общения) 
+Итог: Создал чат где 3 онлайна и 80 ботов, удалил чат.</div>
+            <div class="shame-item"><strong>3. Релтин</strong> – Был админом группы 5 уровня, оскроблял обычных участников. Получил мут на 1 час и вышел с чата навсегда. Обиженный фрик который играет в нулс 24/7 
+Итог: Неизвестно где находится. Забанен.
+</div>
+            <div class="shame-item"><strong>4. Дед</strong> – Сливал инфу про участников чата, успокоился после того как другие участники чата нашли его фото и страницу в вк его мамы. 
+Итог: Стал нормальным (вроде) , находится в нашем чате..</div>
+            <div class="shame-item"><strong>5. Психокид</strong> – Оскроблял всех участников в чате, разданивался несколько раз (жалели его) 
+Итог: Забанен в чате находится в чате нищий оппов</div>
         </div>
         <button class="btn" onclick="nav('p-menu')">НАЗАД</button>
     </div>
 
     <script>
+        const FB_URL = "https://satanaclub-f34c8-default-rtdb.firebaseio.com/";
         let rain = [], lastSeenWord = "";
-        const VIP = ["@SatanaCIub", "@hooligan_hooligan", "@Blood_Househ"];
-        const USERS = ["@VetalGeor", "@geniusmozer", "@aungakw_"]; 
-        const musicLinks = {
-            red: 'https://cdn.pixabay.com/audio/2022/11/04/audio_346c738e4a.mp3', 
-            green: 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Rolemusic/The_Black_Spindle/Rolemusic_-_04_-_The_White_Frame.mp3',
-            pink: 'https://cdn.pixabay.com/audio/2022/05/27/audio_180873747b.mp3',
-            blue: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
-        };
-
-        async function syncWithHerokuBot() {
-            const fbUrl = "https://satanaclub-f34c8-default-rtdb.firebaseio.com/stream.json";
-            try {
-                const response = await fetch(fbUrl);
-                const data = await response.json();
-                if (data && data.word && data.word !== lastSeenWord) {
-                    lastSeenWord = data.word;
-                    window.dropChatWord(`${data.user}: ${data.word}`);
-                }
-            } catch (e) {}
-        }
-        setInterval(syncWithHerokuBot, 2000);
-
-        window.dropChatWord = function(text) {
-            const el = document.createElement('div');
-            el.className = 'falling-item chat-word';
-            el.innerText = text;
-            document.getElementById('rain').appendChild(el);
-            rain.push({ el, x: window.innerWidth / 2, y: -50, vx: 0, vy: 2.5 + Math.random(), isChat: true });
-        };
-
-        function render() {
-            let sm = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--speed-m')) || 1;
-            rain.forEach((item, i) => {
-                if(item.name === "@Blood_Househ") {
-                    item.x += item.vx * sm; item.y += item.vy * sm;
-                    if(item.x < 0 || item.x > window.innerWidth - 80) item.vx *= -1;
-                    if(item.y < 0 || item.y > window.innerHeight - 20) item.vy *= -1;
-                } else {
-                    item.y += (item.vy || 3) * sm;
-                    if(item.y > window.innerHeight) {
-                        if(item.isChat) { item.el.remove(); rain.splice(i, 1); return; }
-                        item.y = -50; item.x = Math.random()*window.innerWidth;
-                    }
-                }
-                item.el.style.transform = `translate3d(${item.x}px, ${item.y}px, 0) ${item.isChat ? 'translateX(-50%)' : ''}`;
-            });
-            requestAnimationFrame(render);
-        }
-
-        function setTheme(t) {
-            document.body.className = 'theme-' + t;
-            const m = document.getElementById('bg-music'); m.src = musicLinks[t]; m.play().catch(()=>{});
-        }
 
         function nav(id) {
             document.querySelectorAll('.page').forEach(p=>p.classList.remove('active-page'));
             document.getElementById(id).classList.add('active-page');
+            closeDetail();
         }
 
-        function checkAuth() {
-            if(document.getElementById('pass').value === '2727') { setTheme('red'); nav('p-menu'); }
+        function setTheme(t) { document.body.className = 'theme-' + t; }
+        function checkAuth() { if(document.getElementById('pass').value === '2727') nav('p-menu'); }
+
+        // ВКЛАДКИ
+        function openMembersTab() {
+            nav('p-members');
+            switchTab('users');
         }
 
-        function initInfection() {
-            document.querySelectorAll('.infect-me').forEach(card => {
-                const txt = card.innerText; card.innerHTML = '';
-                txt.split(/\n| /).forEach(w => {
-                    if(!w) return;
-                    const s = document.createElement('span'); s.className = 'inf-word'; s.innerText = w + ' ';
-                    s.onclick = () => {
-                        s.dataset.c = (parseInt(s.dataset.c) || 0) + 1;
-                        if(s.dataset.c >= 3) card.querySelectorAll('.inf-word').forEach(word => word.classList.add('infected'));
-                    };
-                    card.appendChild(s);
+        async function switchTab(type) {
+            document.getElementById('t-users').classList.toggle('active', type === 'users');
+            document.getElementById('t-admins').classList.toggle('active', type === 'admins');
+            const container = document.getElementById('list-container');
+            container.innerHTML = "Синхронизация...";
+
+            try {
+                const res = await fetch(`${FB_URL}${type}.json`);
+                const data = await res.json();
+                container.innerHTML = "";
+                if(!data) return container.innerHTML = "Пусто. Пропиши .scan в чате.";
+
+                Object.keys(data).forEach(id => {
+                    const u = data[id];
+                    const div = document.createElement('div');
+                    div.className = 'user-item';
+                    div.innerHTML = `<span>${u.nick}</span> <span style="opacity:0.4;">ID:${id}</span>`;
+                    div.onclick = () => showUserDetail(u, id, type);
+                    container.appendChild(div);
                 });
-            });
+            } catch (e) { container.innerHTML = "Ошибка базы."; }
         }
 
-        window.onload = () => {
-            initInfection();
-            const rainCont = document.getElementById('rain');
-            [...VIP, ...USERS].forEach(n => {
-                const el = document.createElement('div'); el.className = 'falling-item'; el.innerText = n;
-                rainCont.appendChild(el);
-                rain.push({ el, x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight, vx: n==="@Blood_Househ"?7:0, vy: n==="@Blood_Househ"?7:0, name: n });
+        function showUserDetail(u, id, type) {
+            const detail = document.getElementById('user-detail');
+            const content = document.getElementById('user-info-content');
+            let statusField = type === 'users' ? `ОГРАНИЧЕНИЯ: ${u.restricted || 'Нет'}` : `ПРАВА: ${u.rights || 'Admin Access'}`;
+
+            content.innerHTML = `
+                <div style="color:var(--main); border-bottom:1px solid var(--main); margin-bottom:10px; padding:5px 0;">${u.nick}</div>
+                <p>USERNAME: ${u.username} <button class="copy-btn" onclick="navigator.clipboard.writeText('${u.username}')">COPY</button></p>
+                <p>АЙДИ: ${id}</p>
+                <p>ОПИСАНИЕ: ${u.bio || 'нету'}</p>
+                <p>СООБЩЕНИЙ: ${u.msg_count || 0}</p>
+                <p>РЕГИСТРАЦИЯ: ${u.reg_date || 'неизвестно'}</p>
+                <p style="color:var(--main); margin-top:10px;">${statusField}</p>
+            `;
+            detail.style.display = 'block';
+        }
+
+        function closeDetail() { document.getElementById('user-detail').style.display = 'none'; }
+
+        // СИСТЕМНЫЕ УВЕДОМЛЕНИЯ (ВХОД)
+        async function syncSystem() {
+            try {
+                const r = await fetch(FB_URL + "stream.json");
+                const d = await r.json();
+                if(d && d.word !== lastSeenWord && d.user === "SYSTEM") {
+                    lastSeenWord = d.word;
+                    const el = document.createElement('div');
+                    el.className = 'falling-item system-msg';
+                    el.innerText = d.word;
+                    document.getElementById('rain').appendChild(el);
+                    rain.push({ el, x: window.innerWidth/2, y: -50, vy: 2 });
+                }
+            } catch(e){}
+        }
+        setInterval(syncSystem, 2500);
+
+        function render() {
+            rain.forEach((item, i) => {
+                item.y += 2;
+                if(item.y > window.innerHeight) { item.el.remove(); rain.splice(i, 1); return; }
+                item.el.style.transform = `translate3d(${item.x}px, ${item.y}px, 0) translateX(-50%)`;
             });
-            render();
-        };
+            requestAnimationFrame(render);
+        }
+        render();
     </script>
 </body>
 </html>
